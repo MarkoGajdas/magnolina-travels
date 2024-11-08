@@ -10,6 +10,7 @@ export class HomePage extends PageBase {
   }
 
   readonly homeLogo = 'selector-for-home-nav';
+
   readonly navTours = '.nav.navbar-nav >> text=Tours';
   readonly navStories = '.nav.navbar-nav >> text=Stories';
   readonly navAbout = '.nav.navbar-nav >> text=About';
@@ -27,20 +28,32 @@ export class HomePage extends PageBase {
     await this.page.goto(URLS_BASE_PAGES.HOME_PAGE.URL);
   }
 
-  async navigateToStories() {
-    await this.page.click(this.navStories);
+  async clickOnTours() {
+    await this.page.click(this.navTours);
   }
 
-  async navigateToAbout() {
+  async clickOnStories() {
+    await this.page.click(this.navTours);
+  }
+
+  async clickOnAbout() {
     await this.page.click(this.navAbout);
   }
 
-  async navigateToContact() {
+  async clickOnContact() {
     await this.page.click(this.navContact);
   }
 
-  async navigateToMembers() {
+  async clickOnMembers() {
     await this.page.click(this.navMembers);
+  }
+  
+  async cllickOnLanguageGer(){
+    await this.page.click(this.languageGer);
+  }
+
+  async cllickOnLanguageEng(){
+    await this.page.click(this.languageEng);
   }
 
   async navigateToToursSubpages() {
@@ -53,13 +66,25 @@ export class HomePage extends PageBase {
     await this.verifySubpages(URLS_SUBPAGES.NAV_DESTINATIONS_URLS);
   }
 
-  async cllickOnLanguageGer(){
-    await this.page.click(this.languageGer);
+  async clickOnToursDropdown() {
+    const toursDropdown = await this.page.locator(this.navTours);
+    
+    if (await toursDropdown.isVisible()) {
+      await toursDropdown.click();
+    } else {
+      throw new Error('Tours dropdown is not visible');
+    }
   }
 
-  async cllickOnLanguageEng(){
-    await this.page.click(this.languageEng);
-  }
+  async  clickOnTourDropdownItem( itemText: string) {
+    const dropdownItem = await this.page.locator(`ul.dropdown-menu a:has-text("${itemText}")`);
+  
+    if (await dropdownItem.isVisible()) {
+      await dropdownItem.click();
+    } else {
+      throw new Error(`Dropdown item with text "${itemText}" not found`);
+    }
+  }  
 
   async verifyHomePageGer(){
       await this.verifyPageLoad(

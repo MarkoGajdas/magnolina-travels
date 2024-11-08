@@ -41,8 +41,33 @@ export const URLS_BASE_PAGES = {
     URL: 'https://demoauthor.magnolia-cms.com/travel/members.html',
     TITLE: 'Members',
     TITLE_DE: 'members'
+  }
+};
+
+// urls.ts
+export const URLS_TOURS_TYPE = {
+  ACTIVE: {
+    URL: 'https://demoauthor.magnolia-cms.com/travel/tour-type~active~.html',
+    TITLE: 'Tour Types',
   },
-  
+  BEACH: {
+    URL: 'https://demoauthor.magnolia-cms.com/travel/tour-type~beach~.html',
+    TITLE: 'Tour Types'
+  }
+};
+
+// urls.ts
+export const URLS_TOURS = {
+  TOUR_HUT_TO_HUT: {
+    URL: 'https://demoauthor.magnolia-cms.com/travel/tours/magnolia-travels/Hut-to-Hut-in-the-Swiss-Alps.html',
+    PARTIAL_URL: '/travel/tours/magnolia-travels/Hut-to-Hut-in-the-Swiss-Alps.html',
+    TITLE: 'Tour detail',
+  },
+  TOUR_ON_BIKE: {
+    URL: 'https://demoauthor.magnolia-cms.com/travel/tours/magnolia-travels/Dolomites-on-Bike.html',
+    PARTIAL_URL: '/travel/tours/magnolia-travels/Dolomites-on-Bike.html',
+    TITLE: 'Tour detail'
+  }
 };
 
 

@@ -1,4 +1,3 @@
-// loginTest.spec.ts
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
 import { HomePage } from '../pages/homePage';
@@ -6,6 +5,9 @@ import { AboutPage } from '../pages/AboutPage';
 import { StoriesPage } from '../pages/StoriesPage';
 import { ContactPage } from '../pages/ContacntPage';
 import { MembersPage } from '../pages/MembersPage';
+import { ToursActivePage } from '../pages/Tours/Active/ToursActivePage';
+import { URLS_TOURS } from '../constants/urls';
+import { HutToHutPage } from '../pages/Tours/Active/ActiveTours/HutToHutPage';
 
 
 test.describe('Login and verify navigation elements. ', () => {
@@ -15,6 +17,8 @@ test.describe('Login and verify navigation elements. ', () => {
   let storiesPage: StoriesPage;
   let contactPage: ContactPage;
   let membersPage: MembersPage;
+  let toursActivePage: ToursActivePage;
+  let huteToHutePage: HutToHutPage;
 
   // Precondition: Initialize pages and log in before each test
   test.beforeEach(async ({ page }) => {
@@ -24,37 +28,27 @@ test.describe('Login and verify navigation elements. ', () => {
     storiesPage = new StoriesPage(page);
     contactPage = new ContactPage(page);
     membersPage = new MembersPage(page);
+    toursActivePage = new ToursActivePage(page);
+    huteToHutePage = new HutToHutPage(page)
 
     await loginPage.goto();
     await loginPage.loginAndVerify('admin');
   });
 
-  test('Should verify that Stories page loaded successfully', async ({ page }) => {
-    await homePage.clickOnStories();
-    await storiesPage.verifyStoriesPage();
-  });
-
-  test('Should verify that About page loaded successfully', async ({ page }) => {
-    await homePage.clickOnAbout();
-    await aboutPage.verifyAboutPage();
-  });
-
-  test('Should verify that Contact page loaded successfully', async ({ page }) => {
-    await homePage.clickOnContact();
-    await contactPage.verifyContactPage();
-  });
-
-  test('Should verify that Members page loaded successfully', async ({ page }) => {
-    await homePage.clickOnMembers();
-    await membersPage.verifyMembersPage();
-  });
-
-  test('Should verify that Tours subpages are loaded successfully', async ({ page }) => {
-    await homePage.navigateToToursSubpages();
-  });
-
   test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
-    await homePage.navigateToDestinationsSubpages();
+    await homePage.clickOnToursDropdown();
+    await homePage.clickOnTourDropdownItem('ACTIVE');
+  });
+
+  test('Should verify that Tou', async ({ page }) => {
+    await toursActivePage.verifyToursActivePage();
+    await toursActivePage.clickViewTourByHref(URLS_TOURS.TOUR_HUT_TO_HUT.PARTIAL_URL);
+  });
+
+  test('Should verify that Tou', async ({ page }) => {
+    await huteToHutePage.verifyProperties('Start city','Zurich, Switzerland');
+    await huteToHutePage.verifyProperties('Duration','7 Days');
+    await huteToHutePage.verifyProperties('Tour operator','Magnolia Travels');
   });
 
   // Postcondition: Close the page after each test
