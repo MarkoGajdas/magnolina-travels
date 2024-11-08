@@ -1,0 +1,14 @@
+{
+  "admin": {
+    "username": "superuser",
+    "password": "superuser"
+  },
+  "user": {
+    "username": "regular_user",
+    "password": "user_password"
+  },
+  "guest": {
+    "username": "guest_user",
+    "password": "guest_password"
+  }
+}
