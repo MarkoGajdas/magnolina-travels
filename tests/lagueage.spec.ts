@@ -1,7 +1,7 @@
 // loginTest.spec.ts
 import { test } from '@playwright/test';
 import { HomePage } from '../pages/homePage';
-import { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../pages/LoginPage';
 
 
 test.describe('Login and verify navigation elements. ', () => {

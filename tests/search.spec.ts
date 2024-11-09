@@ -2,7 +2,7 @@
 import { test } from '@playwright/test';
 import { ContactPage } from '../pages/ContacntPage';
 import { HomePage } from '../pages/homePage';
-import { LoginPage } from '../pages/loginPage';
+import { LoginPage } from '../pages/LoginPage';
 
 
 test.describe('Login and search ', () => {

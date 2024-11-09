@@ -1,4 +1,3 @@
-// loginPage.ts
 import { Page, expect } from '@playwright/test';
 import { PageBase } from './BasePage';
 import {URLS_BASE_PAGES} from '../constants/urls'
