@@ -1,4 +1,3 @@
-// urls.ts
 export const URLS_SUBPAGES = {
   NAV_TOURS_URLS: [
     { url: 'https://demoauthor.magnolia-cms.com/travel/tour-type~active~.html', title: 'Tour Types' },
@@ -10,9 +9,6 @@ export const URLS_SUBPAGES = {
   ]
 };
 
-
-
-// urls.ts
 export const URLS_BASE_PAGES = {
   LOGIN_PAGE: {
     URL: 'https://demoauthor.magnolia-cms.com/travel/members/login.html',
@@ -42,9 +38,9 @@ export const URLS_BASE_PAGES = {
     TITLE: 'Members',
     TITLE_DE: 'members'
   }
+
 };
 
-// urls.ts
 export const URLS_TOURS_TYPE = {
   ACTIVE: {
     URL: 'https://demoauthor.magnolia-cms.com/travel/tour-type~active~.html',
@@ -56,7 +52,6 @@ export const URLS_TOURS_TYPE = {
   }
 };
 
-// urls.ts
 export const URLS_TOURS = {
   TOUR_HUT_TO_HUT: {
     URL: 'https://demoauthor.magnolia-cms.com/travel/tours/magnolia-travels/Hut-to-Hut-in-the-Swiss-Alps.html',
@@ -69,5 +64,6 @@ export const URLS_TOURS = {
     TITLE: 'Tour detail'
   }
 };
+
 
 

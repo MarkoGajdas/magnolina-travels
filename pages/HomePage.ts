@@ -1,5 +1,5 @@
 import { Page, expect } from '@playwright/test';
-import { PageBase } from './BasePage';
+import { PageBase } from './PageBase';
 import {URLS_BASE_PAGES, URLS_SUBPAGES} from '../constants/urls';
 
 export class HomePage extends PageBase {

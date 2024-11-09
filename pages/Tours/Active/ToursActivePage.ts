@@ -1,6 +1,6 @@
 // navigationPage.ts
 import { Page, expect } from '@playwright/test';
-import { PageBase } from '../../BasePage';
+import { PageBase } from '../../PageBase';
 import { URLS_TOURS_TYPE } from '../../../constants/urls';
 
 export class ToursActivePage extends PageBase {
