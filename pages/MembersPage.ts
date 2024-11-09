@@ -11,9 +11,8 @@ export class MembersPage extends PageBase {
 
   async verifyMembersPage() {
     await this.verifyPageLoad(
-      URLS_BASE_PAGES.MEMBERS_PAGE.TITLE
-      ,URLS_BASE_PAGES.MEMBERS_PAGE.URL)
+      URLS_BASE_PAGES.MEMBERS_PAGE.TITLE,
+      URLS_BASE_PAGES.MEMBERS_PAGE.URL)
   }
-
 
 }

@@ -13,7 +13,7 @@ export class PageBase {
   constructor(page: Page) {
     this.page = page;
   }
-  
+
 
   async verifyPageLoad(expectedTitle: string, expectedUrl) {
     await this.page.waitForLoadState('load', { timeout: 15000 });
@@ -23,7 +23,7 @@ export class PageBase {
 
   async scrollToBottom() {
     await this.page.evaluate(() => {
-        window.scrollTo(0, document.body.scrollHeight);
+      window.scrollTo(0, document.body.scrollHeight);
     });
   }
 
@@ -41,9 +41,9 @@ export class PageBase {
 
   async waitForElement(selector: string, timeout: number = 15000) {
     try {
-        await this.page.waitForSelector(selector, { timeout });
+      await this.page.waitForSelector(selector, { timeout });
     } catch (error) {
-        throw new Error(`Element with selector "${selector}" did not appear within ${timeout / 1000} seconds`);
+      throw new Error(`Element with selector "${selector}" did not appear within ${timeout / 1000} seconds`);
     }
   }
 
