@@ -33,7 +33,7 @@ export class HomePage extends PageBase {
   }
 
   async clickOnStories() {
-    await this.page.click(this.navTours);
+    await this.page.click(this.navStories);
   }
 
   async clickOnAbout() {

@@ -1,22 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
-import { HomePage } from '../pages/homePage';
-import { AboutPage } from '../pages/AboutPage';
-import { StoriesPage } from '../pages/StoriesPage';
-import { ContactPage } from '../pages/ContacntPage';
-import { MembersPage } from '../pages/MembersPage';
-import { ToursActivePage } from '../pages/Tours/Active/ToursActivePage';
+import { test } from '@playwright/test';
 import { URLS_TOURS } from '../constants/urls';
+import { HomePage } from '../pages/homePage';
+import { LoginPage } from '../pages/loginPage';
 import { HutToHutPage } from '../pages/Tours/Active/ActiveTours/HutToHutPage';
+import { ToursActivePage } from '../pages/Tours/Active/ToursActivePage';
 
 
 test.describe('Login and verify navigation elements. ', () => {
   let loginPage: LoginPage;
   let homePage: HomePage;
-  let aboutPage: AboutPage;
-  let storiesPage: StoriesPage;
-  let contactPage: ContactPage;
-  let membersPage: MembersPage;
   let toursActivePage: ToursActivePage;
   let huteToHutePage: HutToHutPage;
 
@@ -24,10 +16,6 @@ test.describe('Login and verify navigation elements. ', () => {
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     homePage = new HomePage(page);
-    aboutPage = new AboutPage(page);
-    storiesPage = new StoriesPage(page);
-    contactPage = new ContactPage(page);
-    membersPage = new MembersPage(page);
     toursActivePage = new ToursActivePage(page);
     huteToHutePage = new HutToHutPage(page)
 
@@ -38,16 +26,10 @@ test.describe('Login and verify navigation elements. ', () => {
   test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
     await homePage.clickOnToursDropdown();
     await homePage.clickOnTourDropdownItem('ACTIVE');
-  });
-
-  test('Should verify that Tou', async ({ page }) => {
     await toursActivePage.verifyToursActivePage();
     await toursActivePage.clickViewTourByHref(URLS_TOURS.TOUR_HUT_TO_HUT.PARTIAL_URL);
-  });
-
-  test('Should verify that Tou', async ({ page }) => {
     await huteToHutePage.verifyProperties('Start city','Zurich, Switzerland');
-    await huteToHutePage.verifyProperties('Duration','7 Days');
+    await huteToHutePage.verifyProperties('Duration','7 days');
     await huteToHutePage.verifyProperties('Tour operator','Magnolia Travels');
   });
 
