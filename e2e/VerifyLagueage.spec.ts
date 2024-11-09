@@ -4,7 +4,7 @@ import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 
 
-test.describe('Login and verify navigation elements. ', () => {
+test.describe('Login and verify that switching languages works.', () => {
   let loginPage: LoginPage;
   let homePage: HomePage;
 
@@ -12,13 +12,12 @@ test.describe('Login and verify navigation elements. ', () => {
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     homePage = new HomePage(page);
-    
 
     await loginPage.gotoLoginPage();
     await loginPage.loginAndVerify('admin');
   });
 
-  test('Should verify that Stories page loaded successfully', async ({ page }) => {
+  test('Should navigate to home page and switch between langugaes is successfully', async ({ page }) => {
     await homePage.navigateToHome();
     await homePage.cllickOnLanguageGer();
     await homePage.verifyHomePageGer();

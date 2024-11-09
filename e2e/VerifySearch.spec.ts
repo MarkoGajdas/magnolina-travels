@@ -16,14 +16,13 @@ test.describe('Login and search ', () => {
     homePage = new HomePage(page);
     contactPage = new ContactPage(page);
 
-
     await loginPage.gotoLoginPage();
     await loginPage.loginAndVerify('admin');
   });
 
   test('Should search for Europe, click on some results and verify if you are on correct page at the end.', async ({ page }) => {
     await homePage.navigateToHome();
-    await homePage.verifyAndClickSearchResult('Europe', 5 , 1);
+    await homePage.verifyAndClickSearchResult('Europe', 5, 1);
     await contactPage.verifyContactPage();
   });
 

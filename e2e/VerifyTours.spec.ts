@@ -6,7 +6,7 @@ import { HutToHutPage } from '../pages/Tours/Active/ActiveTours/HutToHutPage';
 import { ToursActivePage } from '../pages/Tours/Active/ToursActivePage';
 
 
-test.describe('Login and verify navigation elements. ', () => {
+test.describe('Login and verify tours.', () => {
   let loginPage: LoginPage;
   let homePage: HomePage;
   let toursActivePage: ToursActivePage;
@@ -28,9 +28,9 @@ test.describe('Login and verify navigation elements. ', () => {
     await homePage.clickOnTourDropdownItem('ACTIVE');
     await toursActivePage.verifyToursActivePage();
     await toursActivePage.clickViewTourByHref(URLS_TOURS.TOUR_HUT_TO_HUT.PARTIAL_URL);
-    await huteToHutePage.verifyProperties('Start city','Zurich, Switzerland');
-    await huteToHutePage.verifyProperties('Duration','7 days');
-    await huteToHutePage.verifyProperties('Tour operator','Magnolia Travels');
+    await huteToHutePage.verifyProperties('Start city', 'Zurich, Switzerland');
+    await huteToHutePage.verifyProperties('Duration', '7 days');
+    await huteToHutePage.verifyProperties('Tour operator', 'Magnolia Travels');
   });
 
   // Postcondition: Close the page after each test

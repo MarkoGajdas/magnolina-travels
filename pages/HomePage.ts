@@ -1,6 +1,6 @@
 import { Page, expect } from '@playwright/test';
 import { PageBase } from './PageBase';
-import {URLS_BASE_PAGES, URLS_SUBPAGES} from '../constants/urls';
+import { URLS_BASE_PAGES, URLS_SUBPAGES } from '../constants/urls';
 
 export class HomePage extends PageBase {
 
@@ -46,73 +46,66 @@ export class HomePage extends PageBase {
   async clickOnMembers() {
     await this.page.click(this.navMembers);
   }
-  
-  async cllickOnLanguageGer(){
+
+  async cllickOnLanguageGer() {
     await this.page.click(this.languageGer);
   }
 
-  async cllickOnLanguageEng(){
+  async cllickOnLanguageEng() {
     await this.page.click(this.languageEng);
   }
 
   async navigateToToursSubpages() {
     await this.page.click(this.navTours);
+  }
+
+  async verfyEachTourSubpage() {
+    //Note: Not this methode check only 2 destinations, easy extendable if you add title and URL to urls.ts in NAV_TOURS_URLS
     await this.verifySubpages(URLS_SUBPAGES.NAV_TOURS_URLS);
   }
 
-  async navigateToDestinationsSubpages() {
-    await this.page.click(this.navTours);
+  async verifyDestinationsSubpages() {
+    //Note: Not this methode check only 2 destinations, easy extendable if you add title and URL to urls.ts in NAV_DESTINATIONS_URLS
     await this.verifySubpages(URLS_SUBPAGES.NAV_DESTINATIONS_URLS);
   }
 
-  async clickOnToursDropdown() {
-    const toursDropdown = await this.page.locator(this.navTours);
-    
-    if (await toursDropdown.isVisible()) {
-      await toursDropdown.click();
-    } else {
-      throw new Error('Tours dropdown is not visible');
-    }
+  async verifyHomePageGer() {
+    await this.verifyPageLoad(
+      URLS_BASE_PAGES.HOME_PAGE.TITLE_DE,
+      URLS_BASE_PAGES.HOME_PAGE.URL_DE);
   }
 
-  async  clickOnTourDropdownItem( itemText: string) {
-    const dropdownItem = await this.page.locator(`ul.dropdown-menu a:has-text("${itemText}")`);
-  
-    if (await dropdownItem.isVisible()) {
-      await dropdownItem.click();
-    } else {
-      throw new Error(`Dropdown item with text "${itemText}" not found`);
-    }
-  }  
-
-  async verifyHomePageGer(){
-      await this.verifyPageLoad(
-        URLS_BASE_PAGES.HOME_PAGE.TITLE_DE,
-        URLS_BASE_PAGES.HOME_PAGE.URL_DE);
-  }
-
-  async verifyHomePage(){
+  async verifyHomePage() {
     await this.verifyPageLoad(
       URLS_BASE_PAGES.HOME_PAGE.TITLE,
       URLS_BASE_PAGES.HOME_PAGE.URL);
   }
 
+  async clickOnTourDropdownItem(itemText: string) {
+    const dropdownItem = await this.page.locator(`ul.dropdown-menu a:has-text("${itemText}")`);
+
+    if (await dropdownItem.isVisible()) {
+      await dropdownItem.click();
+    } else {
+      throw new Error(`Dropdown item with text "${itemText}" not found`);
+    }
+  }
+
   async searchFor(searchFor: string) {
-    await this.page.locator(this.searchField).click();            
+    await this.page.locator(this.searchField).click();
     await this.page.fill(this.searchField, searchFor);
-    await this.page.locator(this.searchField).press('Enter');      
+    await this.page.locator(this.searchField).press('Enter');
   }
 
   async verifyAndClickSearchResult(searchFor: string, minExpectedResults: number, elementIndex: number) {
-    
-    if (await minExpectedResults < 0 || elementIndex < 0 ) {
+
+    if (await minExpectedResults < 0 || elementIndex < 0) {
       throw new Error(`Number of expected results/ or index of item can't be less then 0.`);
     }
 
     await this.searchFor(searchFor);
-
     const results = await this.page.locator(this.searchListOfExpectedItems);
-    
+
     const resultCount = await results.count();
     if (resultCount < minExpectedResults) {
       throw new Error(`Less than ${minExpectedResults} search results found`);
@@ -122,7 +115,7 @@ export class HomePage extends PageBase {
     const targetResults = await this.page.locator(this.searchListOfExpectedItems)
       .locator('span.excerpt-fragment')
       .filter({ hasText: searchFor });
-    
+
     if (elementIndex >= resultCount || elementIndex < 0) {
       throw new Error(`Invalid elementIndex ${elementIndex}, should be between 0 and ${resultCount - 1}`);
     }
@@ -134,6 +127,6 @@ export class HomePage extends PageBase {
     } else {
       throw new Error(`No result containing "Europe" found at index ${elementIndex}`);
     }
-}
+  }
 
 }

@@ -51,10 +51,12 @@ test.describe('Login and verify navigation elements. ', () => {
 
   test('Should verify that Tours subpages are loaded successfully', async ({ page }) => {
     await homePage.navigateToToursSubpages();
+    await homePage.verfyEachTourSubpage();
   });
 
   test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
-    await homePage.navigateToDestinationsSubpages();
+    await homePage.clickOnTours();
+    await homePage.verifyDestinationsSubpages();
   });
 
   // Postcondition: Close the page after each test

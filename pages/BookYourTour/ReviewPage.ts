@@ -9,21 +9,37 @@ export class ReviewPage extends PageBase {
     }
 
     readonly fileUploadButton = '#photograph';
-    readonly nextStepButtonSelector = 'input[type="submit"][value="Confirm Booking"]';
+    readonly confirmButtonSelector = 'input[type="submit"][value="Confirm Booking"]';
     readonly previousStepButtonSelector = 'input[type="submit"][value="Previous step"]';
+    readonly errorMessage = 'text=Internal error, form could not be sent';
+    readonly confirmedMessage = 'text=Booking confirmed';
 
 
     async uploadFile(filePath: string) {
         await this.page.locator(this.fileUploadButton).setInputFiles(filePath);
-      }
-      
-    async clickNextStepButton() {
-        await this.page.locator(this.nextStepButtonSelector).click();
+    }
+
+    async clickConfirmButton() {
+        await this.page.locator(this.confirmButtonSelector).click();
         await this.page.waitForTimeout(2000);
     }
 
     async clickPreviousStepButton() {
         await this.page.locator(this.previousStepButtonSelector).click();
+    }
+
+    async verifyNoErrorMessage() {
+        try {
+            const errorMessageLocator = this.page.locator(this.errorMessage);
+            await expect(errorMessageLocator).not.toBeVisible();
+        } catch (e) {
+            throw new Error('Unexpected error message: "Internal error, form could not be sent"');
+        }
+    }
+
+    async verifySuccessMessage() {
+        const errorMessageLocator = this.page.locator(this.errorMessage);
+        await expect(errorMessageLocator).toBeVisible();
     }
 
 }
