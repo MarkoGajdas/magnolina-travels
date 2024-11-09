@@ -49,11 +49,11 @@ test.describe('Login and verify navigation elements. ', () => {
     await membersPage.verifyMembersPage();
   });
 
-  test('Should verify that Tours subpages are loaded successfully', async ({ page }) => {
+  test('Should verify that Destinations subpages are loaded successfully', async ({ page }) => {
     await homePage.verifyDestinationsDropDown();
   });
 
-  test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
+  test('Should verify that Tours subpages are loaded successfully', async ({ page }) => {
     await homePage.verifyToursDropDown();
   });
 
