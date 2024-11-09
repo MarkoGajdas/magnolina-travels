@@ -17,7 +17,7 @@ test.describe('Login and search ', () => {
     contactPage = new ContactPage(page);
 
 
-    await loginPage.goto();
+    await loginPage.gotoLoginPage();
     await loginPage.loginAndVerify('admin');
   });
 

@@ -14,7 +14,7 @@ export class LoginPage extends PageBase {
     readonly pageTitleUserLoggedIn = 'Log in';
     readonly textLoginVerify = 'Welcome, superuser.';
 
-    async goto() {
+    async gotoLoginPage() {
         await this.page.goto(URLS_BASE_PAGES.LOGIN_PAGE.URL);
     }
 

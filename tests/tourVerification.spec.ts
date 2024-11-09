@@ -19,7 +19,7 @@ test.describe('Login and verify navigation elements. ', () => {
     toursActivePage = new ToursActivePage(page);
     huteToHutePage = new HutToHutPage(page)
 
-    await loginPage.goto();
+    await loginPage.gotoLoginPage();
     await loginPage.loginAndVerify('admin');
   });
 

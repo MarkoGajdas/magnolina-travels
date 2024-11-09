@@ -14,7 +14,7 @@ test.describe('Login and verify navigation elements. ', () => {
     homePage = new HomePage(page);
     
 
-    await loginPage.goto();
+    await loginPage.gotoLoginPage();
     await loginPage.loginAndVerify('admin');
   });
 
