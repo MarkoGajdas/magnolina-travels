@@ -15,5 +15,4 @@ export class StoriesPage extends PageBase {
       URLS_BASE_PAGES.STORIES_PAGE.URL)
   }
 
-
 }
