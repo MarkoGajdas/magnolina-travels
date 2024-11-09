@@ -1,7 +1,7 @@
 // loginTest.spec.ts
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
-import { HomePage } from '../pages/homePage';
+import { HomePage } from '../pages/HomePage';
 import { AboutPage } from '../pages/AboutPage';
 import { StoriesPage } from '../pages/StoriesPage';
 import { ContactPage } from '../pages/ContacntPage';

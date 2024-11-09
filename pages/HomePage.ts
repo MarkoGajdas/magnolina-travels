@@ -1,4 +1,3 @@
-// navigationPage.ts
 import { Page, expect } from '@playwright/test';
 import { PageBase } from './BasePage';
 import {URLS_BASE_PAGES, URLS_SUBPAGES} from '../constants/urls';

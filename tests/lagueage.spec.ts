@@ -1,6 +1,6 @@
 // loginTest.spec.ts
 import { test } from '@playwright/test';
-import { HomePage } from '../pages/homePage';
+import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 
 

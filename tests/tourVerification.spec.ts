@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { URLS_TOURS } from '../constants/urls';
-import { HomePage } from '../pages/homePage';
+import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { HutToHutPage } from '../pages/Tours/Active/ActiveTours/HutToHutPage';
 import { ToursActivePage } from '../pages/Tours/Active/ToursActivePage';
