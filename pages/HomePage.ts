@@ -1,72 +1,12 @@
 import { Page, expect } from '@playwright/test';
 import { PageBase } from './PageBase';
 import { URLS_BASE_PAGES, URLS_SUBPAGES } from '../constants/urls';
+import { DROPDOWN_LOCATORS } from '../constants/dropdowns';
 
 export class HomePage extends PageBase {
 
   constructor(page: Page) {
     super(page);
-  }
-
-  readonly homeLogo = 'selector-for-home-nav';
-
-  readonly navTours = '.nav.navbar-nav >> text=Tours';
-  readonly navStories = '.nav.navbar-nav >> text=Stories';
-  readonly navAbout = '.nav.navbar-nav >> text=About';
-  readonly navContact = '.nav.navbar-nav >> text=Contact';
-  readonly navMembers = '.nav.navbar-nav >> text=Members';
-
-  readonly languageEng = '#language-link ul li a[title="English"]';
-  readonly languageGer = '#language-link ul li a[title="German"]';
-
-  readonly searchField = '#nav-search';
-  readonly searchListOfExpectedItems = '.list-group-item';
-
-
-  async navigateToHome() {
-    await this.page.goto(URLS_BASE_PAGES.HOME_PAGE.URL);
-  }
-
-  async clickOnTours() {
-    await this.page.click(this.navTours);
-  }
-
-  async clickOnStories() {
-    await this.page.click(this.navStories);
-  }
-
-  async clickOnAbout() {
-    await this.page.click(this.navAbout);
-  }
-
-  async clickOnContact() {
-    await this.page.click(this.navContact);
-  }
-
-  async clickOnMembers() {
-    await this.page.click(this.navMembers);
-  }
-
-  async cllickOnLanguageGer() {
-    await this.page.click(this.languageGer);
-  }
-
-  async cllickOnLanguageEng() {
-    await this.page.click(this.languageEng);
-  }
-
-  async navigateToToursSubpages() {
-    await this.page.click(this.navTours);
-  }
-
-  async verfyEachTourSubpage() {
-    //Note: Not this methode check only 2 destinations, easy extendable if you add title and URL to urls.ts in NAV_TOURS_URLS
-    await this.verifySubpages(URLS_SUBPAGES.NAV_TOURS_URLS);
-  }
-
-  async verifyDestinationsSubpages() {
-    //Note: Not this methode check only 2 destinations, easy extendable if you add title and URL to urls.ts in NAV_DESTINATIONS_URLS
-    await this.verifySubpages(URLS_SUBPAGES.NAV_DESTINATIONS_URLS);
   }
 
   async verifyHomePageGer() {
@@ -89,6 +29,14 @@ export class HomePage extends PageBase {
     } else {
       throw new Error(`Dropdown item with text "${itemText}" not found`);
     }
+  }
+
+  async verifyToursDropDown() {
+    await this.verifyDropDownPages(DROPDOWN_LOCATORS.DROPDOWN_LOCATOR_TOURS, URLS_SUBPAGES.NAV_TOURS_URLS);
+  }
+
+  async verifyDestinationsDropDown() {
+    await this.verifyDropDownPages(DROPDOWN_LOCATORS.DROPDOWN_LOCATOR_DESTINATIONS, URLS_SUBPAGES.NAV_DESTINATIONS_URLS);
   }
 
   async searchFor(searchFor: string) {

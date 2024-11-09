@@ -50,13 +50,11 @@ test.describe('Login and verify navigation elements. ', () => {
   });
 
   test('Should verify that Tours subpages are loaded successfully', async ({ page }) => {
-    await homePage.navigateToToursSubpages();
-    await homePage.verfyEachTourSubpage();
+    await homePage.verifyDestinationsDropDown();
   });
 
   test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
-    await homePage.clickOnTours();
-    await homePage.verifyDestinationsSubpages();
+    await homePage.verifyToursDropDown();
   });
 
   // Postcondition: Close the page after each test
