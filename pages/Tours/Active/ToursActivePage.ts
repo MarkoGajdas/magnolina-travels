@@ -9,6 +9,13 @@ export class ToursActivePage extends PageBase {
     super(page);
   }
 
+  readonly buttonBookTour = 'input[value="Book Tour"]';
+
+
+  async clickOnBookTour() {
+    await this.page.locator(this.buttonBookTour).click();
+  }
+
   async verifyToursActivePage() {
     await this.verifyPageLoad(
         URLS_TOURS_TYPE.ACTIVE.TITLE,

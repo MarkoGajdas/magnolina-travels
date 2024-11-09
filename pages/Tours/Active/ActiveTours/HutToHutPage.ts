@@ -1,9 +1,9 @@
 // navigationPage.ts
 import { Page, expect } from '@playwright/test';
-import { PageBase } from '../../../BasePage';
 import { URLS_TOURS } from '../../../../constants/urls';
+import { ToursActivePage } from '../ToursActivePage';
 
-export class HutToHutPage extends PageBase {
+export class HutToHutPage extends ToursActivePage {
 
   constructor(page: Page) {
     super(page);

@@ -1,7 +1,7 @@
 // navigationPage.ts
 import { Page, expect } from '@playwright/test';
 import { PageBase } from './BasePage';
-import {URLS_BASE_PAGES} from '../constants/urls';
+import { URLS_BASE_PAGES } from '../constants/urls';
 
 export class MembersPage extends PageBase {
 
