@@ -1,6 +1,5 @@
 import { Page, expect } from '@playwright/test';
 import { URLS_BASE_PAGES, URLS_SUBPAGES } from '../constants/urls';
-import { DROPDOWN_LOCATORS } from '../constants/dropdowns';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -24,8 +23,9 @@ export class PageBase {
   readonly languageEng = '#language-link ul li a[title="English"]';
   readonly languageGer = '#language-link ul li a[title="German"]';
 
-  readonly searchField = '#nav-search';
   readonly searchListOfExpectedItems = '.list-group-item';
+  readonly searchField = '#nav-search';
+  
 
   async navigateToHome() {
     await this.page.goto(URLS_BASE_PAGES.HOME_PAGE.URL);

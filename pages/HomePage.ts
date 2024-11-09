@@ -4,10 +4,11 @@ import { URLS_BASE_PAGES, URLS_SUBPAGES } from '../constants/urls';
 import { DROPDOWN_LOCATORS } from '../constants/dropdowns';
 
 export class HomePage extends PageBase {
-
+  
   constructor(page: Page) {
     super(page);
   }
+  
 
   async verifyHomePageGer() {
     await this.verifyPageLoad(
@@ -45,9 +46,9 @@ export class HomePage extends PageBase {
     await this.page.locator(this.searchField).press('Enter');
   }
 
-  async verifyAndClickSearchResult(searchFor: string, minExpectedResults: number, elementIndex: number) {
+  async verifyAndClickSearchResult(searchFor: string, minExpectedResults: number, clickElementIndex: number) {
 
-    if (await minExpectedResults < 0 || elementIndex < 0) {
+    if (await minExpectedResults < 0 || clickElementIndex < 0) {
       throw new Error(`Number of expected results/ or index of item can't be less then 0.`);
     }
 
@@ -64,16 +65,16 @@ export class HomePage extends PageBase {
       .locator('span.excerpt-fragment')
       .filter({ hasText: searchFor });
 
-    if (elementIndex >= resultCount || elementIndex < 0) {
-      throw new Error(`Invalid elementIndex ${elementIndex}, should be between 0 and ${resultCount - 1}`);
+    if (clickElementIndex >= resultCount || clickElementIndex < 0) {
+      throw new Error(`Invalid elementIndex ${clickElementIndex}, should be between 0 and ${resultCount - 1}`);
     }
 
-    const targetResult = targetResults.nth(elementIndex);
+    const targetResult = targetResults.nth(clickElementIndex);
 
     if (await targetResult.isVisible()) {
       await targetResult.click();
     } else {
-      throw new Error(`No result containing "Europe" found at index ${elementIndex}`);
+      throw new Error(`No result containing "Europe" found at index ${clickElementIndex}`);
     }
   }
 

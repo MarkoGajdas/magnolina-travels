@@ -24,7 +24,7 @@ test.describe('Login and verify tours.', () => {
   });
 
   test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
-    await homePage.clickOnToursDropdown();
+    await homePage.clickOnTours();
     await homePage.clickOnTourDropdownItem('ACTIVE');
     await toursActivePage.verifyToursActivePage();
     await toursActivePage.clickViewTourByHref(URLS_TOURS.TOUR_HUT_TO_HUT.PARTIAL_URL);
