@@ -1,7 +1,6 @@
 export const FILE_TYPES = {
-    PNG: 'Notes Marko',
-    JSON: 'superuser',
-    XML: 'superuser',
-    TXT: '/Users/Marko/QnitAssignment/files/testFile.text'
-
+    PNG: '/example/example.png',
+    JSON: '/example/example.json',
+    XML: '/example/example.xml',
+    TXT: '/Users/Marko/QnitAssignment/files/testFile.txt'
 };
