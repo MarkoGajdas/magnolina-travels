@@ -1,14 +1,13 @@
 export const USER_DETAILS = {
     USER_MARKO: {
-      TITLE: 'superuser',
-      FIRST_NAME: 'superuser',
-      LAST_NAME: 'superuser',
-      EMAIL: 'superuser',
-      PHONE: 'superuser',
-      CITY: 'superuser',
-      POSTAL: 'superuser',
-      COUNTRY: 'superuser',
-      PROVINCE: 'superuser'
-    }
-    
-  };
+      TITLE: 'Qnit Test',
+      FIRST_NAME: 'Marko',
+      LAST_NAME: 'Gajdas',
+      EMAIL: 'markogajdas60@gmail.com',
+      PHONE: '0601332229',
+      CITY: 'Beograd',
+      POSTAL: '11000',
+      COUNTRY: 'Serbia',
+      PROVINCE: 'None'
+    }  
+};

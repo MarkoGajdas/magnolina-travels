@@ -8,6 +8,9 @@ import { BookYourTourPage } from '../pages/BookYourTour/BookYourTourPage';
 import { MealPage } from '../pages/BookYourTour/MealPage';
 import { PersonalDetailsPage } from '../pages/BookYourTour/PersonalDetails';
 import { ReviewPage } from '../pages/BookYourTour/ReviewPage';
+import { USER_DETAILS } from '../constants/personalDetails';
+import { DropdownOptions } from '../enums/dropdown.enum';
+import { FILE_TYPES } from '../constants/fileTypes';
 
 
 test.describe('Should login and verify navigation elements. ', () => {
@@ -38,7 +41,7 @@ test.describe('Should login and verify navigation elements. ', () => {
 
   test('Should verify that toure is booked successfully', async ({ }) => {
     await homePage.clickOnTours();
-    await homePage.clickOnTourDropdownItem('ACTIVE');
+    await homePage.clickOnTourDropdownItem(DropdownOptions.Active);
 
     await toursActivePage.verifyToursActivePage();
     await toursActivePage.clickViewTourByHref(URLS_TOURS.TOUR_HUT_TO_HUT.PARTIAL_URL);
@@ -55,21 +58,21 @@ test.describe('Should login and verify navigation elements. ', () => {
     await bookYourTourPagePage.clickNextStepButton();
 
     await mealPage.clickMealRadioButton(1);
-    await mealPage.setAdditionalMealNotes('Marko');
+    await mealPage.setAdditionalMealNotes('Notes');
     await mealPage.clickNextStepButton();
 
-    await personalDetails.setTitleField('Test');
-    await personalDetails.setFirstNameField('Marko');
-    await personalDetails.setLastNameField('Gajdas');
-    await personalDetails.setEmailField('markogajdas60@gmail.com');
-    await personalDetails.setPhoneField('0601332229');
-    await personalDetails.setCityField('Beograd');
-    await personalDetails.setPostalCodeField('11000');
-    await personalDetails.setCountryField('Srbija');
-    await personalDetails.setProvinceField('None');
+    await personalDetails.setTitleField(USER_DETAILS.USER_MARKO.FIRST_NAME);
+    await personalDetails.setFirstNameField(USER_DETAILS.USER_MARKO.FIRST_NAME);
+    await personalDetails.setLastNameField(USER_DETAILS.USER_MARKO.FIRST_NAME);
+    await personalDetails.setEmailField(USER_DETAILS.USER_MARKO.EMAIL);
+    await personalDetails.setPhoneField(USER_DETAILS.USER_MARKO.PHONE);
+    await personalDetails.setCityField(USER_DETAILS.USER_MARKO.CITY);
+    await personalDetails.setPostalCodeField(USER_DETAILS.USER_MARKO.POSTAL);
+    await personalDetails.setCountryField(USER_DETAILS.USER_MARKO.COUNTRY);
+    await personalDetails.setProvinceField(USER_DETAILS.USER_MARKO.PROVINCE);
     await personalDetails.clickNextStepButton();
 
-    await reviewPage.uploadFile('/Users/Marko/QnitAssignment/files/testFile.text');
+    await reviewPage.uploadFile(FILE_TYPES.TXT);
     await reviewPage.clickConfirmButton();
     await reviewPage.verifyNoErrorMessage();
 
