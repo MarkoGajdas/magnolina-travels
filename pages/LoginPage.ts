@@ -2,6 +2,7 @@ import { Page, expect } from '@playwright/test';
 import { PageBase } from './PageBase';
 import { URLS_BASE_PAGES } from '../constants/urls'
 
+
 export class LoginPage extends PageBase {
     
     constructor(page: Page) {
@@ -34,7 +35,6 @@ export class LoginPage extends PageBase {
         await this.page.fill(this.usernameInput, user.username);
         await this.page.fill(this.passwordInput, user.password);
         await this.clicOnLoginButton();
-
     }
 
     async verifyUserIsLoggedIn() {

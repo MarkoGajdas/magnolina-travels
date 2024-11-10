@@ -1,7 +1,10 @@
-import { Page, expect } from '@playwright/test';
-import { URLS_BASE_PAGES, URLS_SUBPAGES } from '../constants/urls';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Page, expect } from '@playwright/test';
+import { URLS_BASE_PAGES, URLS_SUBPAGES } from '../constants/urls';
+import { DROPDOWN_LOCATORS } from '../constants/dropdowns';
+import { DropdownOptions } from '../enums/dropdown.enum';
+
 
 export class PageBase {
 
@@ -23,7 +26,8 @@ export class PageBase {
   readonly languageEng = '#language-link ul li a[title="English"]';
   readonly languageGer = '#language-link ul li a[title="German"]';
 
-  readonly searchListOfExpectedItems = '.list-group-item';
+  readonly searchResultsListLocator  = '.list-group-item';
+  readonly searchResultTextFragmentLocator  = 'span.excerpt-fragment';
   readonly searchField = '#nav-search';
   
 
@@ -63,6 +67,15 @@ export class PageBase {
     await this.page.click(this.navTours);
   }
 
+  async verifyToursDropDown() {
+    await this.verifyDropDownPages(DROPDOWN_LOCATORS.DROPDOWN_LOCATOR_TOURS, URLS_SUBPAGES.NAV_TOURS_URLS);
+  }
+
+  async verifyDestinationsDropDown() {
+    await this.verifyDropDownPages(DROPDOWN_LOCATORS.DROPDOWN_LOCATOR_DESTINATIONS, URLS_SUBPAGES.NAV_DESTINATIONS_URLS);
+  }
+
+
   async verifyPageLoad(expectedTitle: string, expectedUrl) {
     await this.page.waitForLoadState('load', { timeout: 15000 });
     await expect(this.page).toHaveTitle(expectedTitle);
@@ -84,6 +97,53 @@ export class PageBase {
       await expect(this.page).toHaveTitle(urlInfo.title);
 
       await this.page.waitForTimeout(2000);
+    }
+  }
+
+  async verifyAndClickSearchResult(searchFor: string, minExpectedResults: number, clickElementIndex: number) {
+
+    if (await minExpectedResults < 0 || clickElementIndex < 0) {
+      throw new Error(`Number of expected results/ or index of item can't be less then 0.`);
+    }
+
+    await this.searchFor(searchFor);
+    const results = await this.page.locator(this.searchResultsListLocator );
+
+    const resultCount = await results.count();
+    if (resultCount < minExpectedResults) {
+      throw new Error(`Less than ${minExpectedResults} search results found`);
+    }
+
+    const targetResults = await this.page.locator(this.searchResultsListLocator )
+      .locator(this.searchResultTextFragmentLocator)
+      .filter({ hasText: searchFor });
+
+    if (clickElementIndex >= resultCount) {
+      throw new Error(`Invalid elementIndex ${clickElementIndex}, should be between 0 and ${resultCount - 1}`);
+    }
+
+    const targetResult = targetResults.nth(clickElementIndex);
+
+    if (await targetResult.isVisible()) {
+      await targetResult.click();
+    } else {
+      throw new Error(`No result containing "Europe" found at index ${clickElementIndex}`);
+    }
+  }
+
+  async searchFor(searchFor: string) {
+    await this.page.locator(this.searchField).click();
+    await this.page.fill(this.searchField, searchFor);
+    await this.page.locator(this.searchField).press('Enter');
+  }
+
+  async clickOnTourDropdownItem(tourType: DropdownOptions) {
+    const dropdownItem = await this.page.locator(`ul.dropdown-menu a:has-text("${tourType}")`);
+
+    if (await dropdownItem.isVisible()) {
+      await dropdownItem.click();
+    } else {
+      throw new Error(`Dropdown item with text "${tourType}" not found`);
     }
   }
 

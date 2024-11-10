@@ -4,6 +4,7 @@ import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { HutToHutPage } from '../pages/Tours/Active/ActiveTours/HutToHutPage';
 import { ToursActivePage } from '../pages/Tours/Active/ToursActivePage';
+import { DropdownOptions } from '../enums/dropdown.enum';
 
 
 test.describe('Login and verify tours.', () => {
@@ -25,7 +26,7 @@ test.describe('Login and verify tours.', () => {
 
   test('Should verify that Destination subpages are loaded successfully', async ({ page }) => {
     await homePage.clickOnTours();
-    await homePage.clickOnTourDropdownItem('ACTIVE');
+    await homePage.clickOnTourDropdownItem(DropdownOptions.Active);
     await toursActivePage.verifyToursActivePage();
     await toursActivePage.clickViewTourByHref(URLS_TOURS.TOUR_HUT_TO_HUT.PARTIAL_URL);
     await huteToHutePage.verifyProperties('Start city', 'Zurich, Switzerland');
